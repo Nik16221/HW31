@@ -47,36 +47,6 @@ class UserListView(ListView):
         return JsonResponse(response, safe=False)
 
 
-# @method_decorator(csrf_exempt, name='dispatch')
-# class UserCreateView(CreateView):
-#     model = User
-#     fields = ['username']
-#
-#     def post(self, request, *args, **kwargs):
-#         data = json.loads(request.body)
-#         user = User.objects.create(username=data['username'],
-#                                    first_name=data['first_name'],
-#                                    last_name=data['last_name'],
-#                                    age=data['age'],
-#                                    role=data['role'],
-#                                    )
-#         if 'locations' in data:
-#             for loc_name in data['locations']:
-#                 loc, _ = Location.objects.get_or_create(name=loc_name)
-#                 user.location.add(loc)
-#
-#         return JsonResponse({
-#             'id': user.pk,
-#             'username': user.username,
-#             'first_name': user.first_name,
-#             'last_name': user.last_name,
-#             'role': user.role,
-#             'age': user.age,
-#             'locations': list(map(str, user.location.all())),
-#             'total_ads': user.ads.filter(is_published=True).count()},
-#             safe=False)
-
-
 @method_decorator(csrf_exempt, name='dispatch')
 class UserDetailView(DetailView):
     model = User

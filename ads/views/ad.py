@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from ads.models import Ad
 from ads.permissions import IsOwnerAdOrStaff
-from ads.serializer import AdSerializer, AdDetailSerializer, AdListSerializer
+from ads.serializer import AdSerializer, AdDetailSerializer, AdListSerializer, AdCreateSerializer
 
 
 def root(request):
@@ -39,7 +39,8 @@ class AdViewSet(ModelViewSet):
     default_serializer = AdSerializer
     serializer_classes = {
         'retrieve': AdDetailSerializer,
-        'list': AdListSerializer
+        'list': AdListSerializer,
+        'create': AdCreateSerializer
     }
 
     default_permission = [AllowAny()]
